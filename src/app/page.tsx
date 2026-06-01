@@ -182,7 +182,7 @@ export default function Home() {
     <main className="shell">
       <section className="hero">
         <div>
-          <p className="eyebrow">AGPL-3.0 self-hosted edition</p>
+          <p className="eyebrow">Self-hosted AGPL-3.0</p>
           <h1>ChatMBA OSS</h1>
           <p className="lede">
             A local-first MBA application workspace for schools, profile material, essays, and
@@ -305,7 +305,7 @@ export default function Home() {
       <section className="panel">
         <div className="panel-heading">
           <h2>Generic Assistant</h2>
-          <span>Non-proprietary prompt</span>
+          <span>Planning assistant</span>
         </div>
         <div className="messages">
           {workspace.chatMessages.length ? workspace.chatMessages.map((message) => (
@@ -313,7 +313,7 @@ export default function Home() {
               <strong>{message.role}</strong>
               <p>{message.content}</p>
             </article>
-          )) : <p className="muted">Ask for help organizing tasks, materials, or drafts. No expert guidance prompts are included.</p>}
+          )) : <p className="muted">Ask for help organizing tasks, materials, or drafts.</p>}
         </div>
         <form className="chat-form" onSubmit={sendChat}>
           <input

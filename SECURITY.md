@@ -15,7 +15,7 @@ Until the first tagged release, security fixes target `main`.
 - The default SQLite database is local to the machine.
 - `.env*` files are ignored except `.env.example`.
 - Model provider API keys should stay in local environment files or deployment secrets.
-- The generic assistant prompt avoids admissions guarantees and proprietary critique methods.
+- The assistant is scoped to organization and drafting; it does not make admissions guarantees.
 - Hosted deployments are responsible for adding auth, rate limits, backups, and transport security.
 
 ## Known Non-Goals In OSS V1

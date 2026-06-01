@@ -2,13 +2,11 @@
 
 ChatMBA OSS is a self-hostable MBA application workspace for applicants, advisors, schools, and community programs. It helps users track target schools, collect profile material, draft essays, and use a generic AI assistant while keeping application data in a local SQLite database.
 
-This repository is the public, open-source edition. It intentionally excludes proprietary admissions guidance, expert critique prompts, insights features, paywalls, private reference profiles, and internal product strategy.
-
 ## Why This Exists
 
 MBA applications contain sensitive personal, career, and family context. A local-first option lets applicants and advisors keep that material under their own control while still using modern AI workflows.
 
-The project is also designed for scholarship hosting: a maintainer, nonprofit, school, or community program can run a hosted version for applicants who cannot pay for commercial coaching tools.
+Community programs can also host instances for applicants who need free access.
 
 ## Features
 
@@ -18,16 +16,18 @@ The project is also designed for scholarship hosting: a maintainer, nonprofit, s
 - Essay draft storage
 - Generic assistant with bring-your-own-model support
 - Provider options for OpenAI, Anthropic, Google Gemini API, and OpenRouter
-- No InstantDB, realtime backend, payment provider, or hosted auth required
+- Runs locally with SQLite; no hosted backend or payment integration required
 
-## What Is Not Included
+## Scope
 
-- Expert admissions guidance prompts
-- Insights and strategic interpretation features
-- Proprietary essay critique methods
-- Real applicant profiles or reference profiles
-- Stripe/paywall flows
-- Internal launch, pricing, marketing, or research docs
+ChatMBA OSS focuses on local organization and drafting:
+
+- school and application tracking
+- profile material storage
+- essay draft storage
+- a generic planning assistant with bring-your-own-model support
+
+It does not include hosted authentication, billing, realtime collaboration, or admissions coaching workflows. Multi-user hosted deployments should add their own auth, access controls, and operational hardening.
 
 ## Quick Start
 
@@ -45,7 +45,7 @@ Open `http://localhost:3000`.
 
 If you do not configure a model API key, the app runs in fallback mode so you can still inspect the workspace.
 
-Before deploying or submitting changes, run:
+Before deploying or opening changes, run:
 
 ```bash
 bun run test

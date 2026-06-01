@@ -8,10 +8,10 @@ This repository is a local-first, self-hostable application workspace. Contribut
 
 - Keep setup simple: SQLite plus bring-your-own-model keys.
 - Do not add hosted-only dependencies as required defaults.
-- Do not add proprietary admissions coaching prompts or expert guidance methods.
+- Do not add admissions coaching playbooks or expert guidance methods.
 - Do not add real applicant profiles, private essays, or personal data.
 - Keep school data clearly sourced or sample-only.
-- Keep the generic assistant useful but non-proprietary.
+- Keep the generic assistant useful, general, and broadly understandable.
 
 ## Development
 

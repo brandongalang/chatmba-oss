@@ -1,24 +1,23 @@
 # Scholarship Hosting Model
 
-ChatMBA OSS can run locally for users who want full control. The same codebase can also support a hosted scholarship tier for applicants who cannot pay for commercial coaching tools.
+ChatMBA OSS can run locally for users who want full control. Community programs can also run a hosted scholarship tier for applicants who need free access.
 
 ## Intended Model
 
 - The open-source app remains self-hostable.
 - Applicants can use their own model keys locally.
 - A hosted scholarship deployment can cover model usage for approved applicants.
-- Sponsors or an operating budget can fund the hosted tier.
-- Paid hosted plans can support ongoing maintenance and free access.
+- Operating costs for a hosted tier can be covered by sponsorship, institutional support, or optional paid plans.
 
-## What Hosted Funding Supports
+## Operating A Hosted Scholarship Tier
 
-Hosted funding can support:
+A maintainer, school, nonprofit, or community program can run a hosted instance that:
 
-- free hosted access for scholarship users,
-- application-planning and drafting conversations,
-- maintainer smoke tests for provider integrations,
-- documentation and release workflows,
-- evaluation of safe generic assistant behavior.
+- provides free access to approved applicants,
+- covers model usage for those users,
+- publishes clear data retention, access, and deletion policies.
+
+Local self-hosting remains available for users who prefer to keep data on their own machine and use their own model keys.
 
 ## Privacy Principle
 

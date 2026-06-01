@@ -1,6 +1,6 @@
 # Architecture
 
-ChatMBA OSS is intentionally smaller than the private product workspace.
+ChatMBA OSS is a local-first Next.js application backed by SQLite.
 
 ## Runtime
 
@@ -9,15 +9,12 @@ ChatMBA OSS is intentionally smaller than the private product workspace.
 - Server-side API routes for persistence and assistant calls
 - Client-side React state with refetch after mutations
 
-## Removed From The Private Product
+## Out Of Scope
 
-- InstantDB
-- Instant auth/admin token/permissions
-- Realtime database subscriptions
-- Stripe and billing gates
-- Insights and expert guidance features
-- Proprietary admissions critique prompts
-- Private reference profiles and strategy docs
+- Hosted authentication and multi-user permissions
+- Realtime collaboration
+- Billing or subscription flows
+- Admissions coaching or insights features
 
 ## Provider Layer
 
