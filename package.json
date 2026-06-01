@@ -5,6 +5,7 @@
   "description": "Self-hostable MBA application workspace with SQLite and bring-your-own-model support.",
   "license": "AGPL-3.0-only",
   "type": "module",
+  "packageManager": "bun@1.3.14",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
