@@ -25,10 +25,17 @@ function latestUserMessage(messages: ChatTurn[]) {
 function fallbackReply(messages: ChatTurn[]) {
   const last = latestUserMessage(messages);
   return [
-    "I can help organize this application workspace.",
+    "Fallback mode: I can help organize this application workspace.",
     last ? `You asked: "${last.slice(0, 240)}"` : "Tell me what school, essay, or profile material you want to work on.",
     "A useful next step is to identify the school, the prompt, the raw material you already have, and what decision you need to make next."
   ].join("\n\n");
+}
+
+function requireProviderText(text: string | undefined, messages: ChatTurn[]) {
+  const trimmed = text?.trim();
+  if (trimmed) return trimmed;
+  if (messages.length === 0) return fallbackReply(messages);
+  throw new Error("Provider returned an empty response");
 }
 
 async function postJson(url: string, headers: Record<string, string>, body: unknown) {
@@ -61,7 +68,7 @@ function openAiCompatible(id: "openai" | "openrouter", apiKey: string | undefine
         { authorization: `Bearer ${apiKey}` },
         { model, messages, temperature: 0.4 }
       ) as { choices?: Array<{ message?: { content?: string } }> };
-      return json.choices?.[0]?.message?.content?.trim() || fallbackReply(params.messages);
+      return requireProviderText(json.choices?.[0]?.message?.content, params.messages);
     }
   };
 }
@@ -90,7 +97,7 @@ function anthropicProvider(): ChatProvider {
             .map((message) => ({ role: message.role, content: message.content }))
         }
       ) as { content?: Array<{ text?: string }> };
-      return json.content?.map((part) => part.text).filter(Boolean).join("\n").trim() || fallbackReply(params.messages);
+      return requireProviderText(json.content?.map((part) => part.text).filter(Boolean).join("\n"), params.messages);
     }
   };
 }
@@ -119,8 +126,10 @@ function googleProvider(): ChatProvider {
           generationConfig: { temperature: 0.4 }
         }
       ) as { candidates?: Array<{ content?: { parts?: Array<{ text?: string }> } }> };
-      return json.candidates?.[0]?.content?.parts?.map((part) => part.text).filter(Boolean).join("\n").trim()
-        || fallbackReply(params.messages);
+      return requireProviderText(
+        json.candidates?.[0]?.content?.parts?.map((part) => part.text).filter(Boolean).join("\n"),
+        params.messages
+      );
     }
   };
 }

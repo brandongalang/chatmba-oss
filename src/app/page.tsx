@@ -82,7 +82,6 @@ export default function Home() {
   const [selectedSchoolId, setSelectedSchoolId] = useState("");
   const [materialTitle, setMaterialTitle] = useState("");
   const [materialBody, setMaterialBody] = useState("");
-  const [draftBody, setDraftBody] = useState("");
   const [chatInput, setChatInput] = useState("");
   const [isLoading, setIsLoading] = useState(true);
   const [isChatting, setIsChatting] = useState(false);
@@ -134,25 +133,23 @@ export default function Home() {
     setMaterialBody("");
   }
 
-  async function createDraft() {
+  async function createDraft(body = "") {
     if (!currentSchool) return;
     await refreshWith("createEssayDraft", {
       schoolId: currentSchool.id,
       prompt: workspace.samplePrompts[0] ?? "Draft an application essay.",
       title: `${currentSchool.name} essay draft`,
-      body: draftBody
+      body
     });
-    setDraftBody("");
   }
 
-  async function saveDraft() {
+  async function saveDraft(body: string) {
     if (!currentDraft) return;
     await refreshWith("updateEssayDraft", {
       id: currentDraft.id,
-      body: draftBody || currentDraft.body,
+      body,
       status: "drafting"
     });
-    setDraftBody("");
   }
 
   async function sendChat(event: FormEvent) {
@@ -228,7 +225,7 @@ export default function Home() {
               >
                 {selectedIds.has(currentSchool.id) ? "Selected" : "Add to plan"}
               </button>
-              <button onClick={createDraft}>Create essay draft</button>
+              <button onClick={() => createDraft()}>Create essay draft</button>
             </div>
           ) : null}
         </div>
@@ -295,15 +292,13 @@ export default function Home() {
             <h2>Essay Draft</h2>
             <span>{currentSchool?.name ?? "No school"}</span>
           </div>
-          <p className="prompt">{currentDraft?.prompt ?? workspace.samplePrompts[0]}</p>
-          <textarea
-            value={draftBody}
-            onChange={(event) => setDraftBody(event.target.value)}
-            placeholder={currentDraft?.body || "Start a draft or paste rough notes."}
+          <EssayDraftEditor
+            key={`${currentSchool?.id ?? "none"}:${currentDraft?.id ?? "new"}`}
+            draft={currentDraft}
+            prompt={currentDraft?.prompt ?? workspace.samplePrompts[0]}
+            onCreate={createDraft}
+            onSave={saveDraft}
           />
-          <div className="actions">
-            {currentDraft ? <button onClick={saveDraft}>Save draft</button> : <button onClick={createDraft}>Create draft</button>}
-          </div>
         </div>
       </section>
 
@@ -330,5 +325,37 @@ export default function Home() {
         </form>
       </section>
     </main>
+  );
+}
+
+function EssayDraftEditor({
+  draft,
+  prompt,
+  onCreate,
+  onSave
+}: {
+  draft?: EssayDraft;
+  prompt?: string;
+  onCreate(body: string): Promise<void>;
+  onSave(body: string): Promise<void>;
+}) {
+  const [body, setBody] = useState(draft?.body ?? "");
+
+  return (
+    <>
+      <p className="prompt">{prompt}</p>
+      <textarea
+        value={body}
+        onChange={(event) => setBody(event.target.value)}
+        placeholder="Start a draft or paste rough notes."
+      />
+      <div className="actions">
+        {draft ? (
+          <button onClick={() => onSave(body)}>Save draft</button>
+        ) : (
+          <button onClick={() => onCreate(body)}>Create draft</button>
+        )}
+      </div>
+    </>
   );
 }

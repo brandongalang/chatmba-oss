@@ -31,6 +31,8 @@ The project is also designed for scholarship hosting: a maintainer, nonprofit, s
 
 ## Quick Start
 
+Prerequisites: Bun, Node 20 or newer, and native build tools if your machine needs to compile `better-sqlite3`.
+
 ```bash
 bun install
 cp .env.example .env.local
@@ -42,6 +44,15 @@ bun run dev
 Open `http://localhost:3000`.
 
 If you do not configure a model API key, the app runs in fallback mode so you can still inspect the workspace.
+
+Before deploying or submitting changes, run:
+
+```bash
+bun run test
+bun run typecheck
+bun run lint
+bun run build
+```
 
 ## Model Providers
 
