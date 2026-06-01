@@ -41,14 +41,19 @@ export async function POST(request: Request) {
 
   appendChatMessage("assistant", reply);
 
+  const providerMetadata = {
+    id: provider.id,
+    model: provider.model,
+    configured: provider.isConfigured()
+  };
+
   return NextResponse.json({
     reply,
     error: providerError,
-    provider: {
-      id: provider.id,
-      model: provider.model,
-      configured: provider.isConfigured()
-    },
-    workspace: getWorkspace()
+    provider: providerMetadata,
+    workspace: {
+      ...getWorkspace(),
+      provider: providerMetadata
+    }
   });
 }

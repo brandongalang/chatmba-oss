@@ -49,6 +49,7 @@ Before deploying or submitting changes, run:
 
 ```bash
 bun run test
+bun run typegen
 bun run typecheck
 bun run lint
 bun run build
