@@ -7,12 +7,12 @@ ChatMBA OSS can run locally for users who want full control. The same codebase c
 - The open-source app remains self-hostable.
 - Applicants can use their own model keys locally.
 - A hosted scholarship deployment can cover model usage for approved applicants.
-- Sponsors or API credits can fund the hosted tier.
+- Sponsors or an operating budget can fund the hosted tier.
 - Paid hosted plans can support ongoing maintenance and free access.
 
-## What API Credits Would Fund
+## What Hosted Funding Supports
 
-API credits would support:
+Hosted funding can support:
 
 - free hosted access for scholarship users,
 - application-planning and drafting conversations,
