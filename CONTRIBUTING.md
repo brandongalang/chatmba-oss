@@ -26,9 +26,10 @@ bun run dev
 Before opening a pull request:
 
 ```bash
-bun run lint
-bun run typecheck
 bun run test
+bun run typegen
+bun run typecheck
+bun run lint
 bun run build
 ```
 
